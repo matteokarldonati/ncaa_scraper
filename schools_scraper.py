@@ -1,11 +1,11 @@
 import requests
 from lxml import html
-
+import pandas as pd
 
 def get_schools(year):
     """
     :param year: string
-    :return: list containing the names of the schools in alphabetical order
+    :return: dataframe containing the names of the schools in alphabetical order
     """
     page = requests.get('https://www.sports-reference.com/cbb/seasons/' + str(year) + '-school-stats.html')
     tree = html.fromstring(page.content)
@@ -18,4 +18,8 @@ def get_schools(year):
         except:
             pass
 
+    schools = pd.DataFrame(data = schools, columns = ['School_name'])
     return schools
+
+
+print(get_schools(2018))

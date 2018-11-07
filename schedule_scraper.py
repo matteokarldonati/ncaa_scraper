@@ -3,6 +3,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+from utils import parse_table, get_table_header
+
 
 def get_team_schedule(team, year):
     """
@@ -21,20 +23,8 @@ def get_team_schedule(team, year):
         if caption.get_text() == 'Schedule and Results Table':
             table = caption.find_parent('table')
 
-    table_rows = table.find_all('tr')
-
-    th = table_rows[0].find_all('th')
-    columns = [i.text for i in th][1:]
-
-    data = []
-
-    for tr in table_rows:
-        td = tr.find_all('td')
-
-        row = [i.text for i in td]
-
-        if row:
-            data.append(row)
+    data = parse_table(table)
+    columns = get_table_header(table)
 
     df = pd.DataFrame(data, index=np.arange(1, len(data) + 1), columns=columns)
     return df

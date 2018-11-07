@@ -3,6 +3,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+from utils import parse_table, get_table_header
+
 # TO DO
 # deal NCAA school name column
 
@@ -22,20 +24,11 @@ def get_schools_stats(year):
 
     table = soup.find_all('table')[0]
 
-    table_rows = table.find_all('tr')
-
-    th = table_rows[1].find_all('th')
-    columns = [i.text for i in th][1:]
-
-    data = []
-
-    for tr in table_rows:
-        td = tr.find_all('td')
-
-        row = [i.text for i in td]
-
-        if row:
-            data.append(row)
+    data = parse_table(table)
+    columns = get_table_header(table, index=1)
 
     df = pd.DataFrame(data, index=np.arange(1, len(data) + 1), columns=columns)
     return df
+
+
+print(get_schools_stats('2017'))

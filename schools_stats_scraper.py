@@ -29,6 +29,3 @@ def get_schools_stats(year):
 
     df = pd.DataFrame(data, index=np.arange(1, len(data) + 1), columns=columns)
     return df
-
-
-print(get_schools_stats('2017'))

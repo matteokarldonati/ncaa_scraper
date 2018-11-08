@@ -1,4 +1,8 @@
 def parse_table(table):
+    """
+    :param table: html table
+    :return: list of lists containing the data inside the table
+    """
     table_rows = table.find_all('tr')
 
     data = []
@@ -15,6 +19,11 @@ def parse_table(table):
 
 
 def get_table_header(table, index=0):
+    """
+    :param table: html table
+    :param index: int
+    :return: list
+    """
     table_rows = table.find_all('tr')
 
     th = table_rows[index].find_all('th')

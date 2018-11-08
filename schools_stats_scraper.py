@@ -8,7 +8,6 @@ from utils import parse_table, get_table_header
 
 def get_schools_stats(year):
     """
-    :param team: string
     :param year: string or int
     :return: pandas.DataFrame containing the schedule of the team for the given year
     """
@@ -26,8 +25,7 @@ def get_schools_stats(year):
 
     df = pd.DataFrame(data, index=np.arange(1, len(data) + 1), columns=columns)
 
-    # Put the flag whether or not they participated in the NCAA tournament
     df['NCAA'] = [el.endswith('NCAA') for el in df[df.columns[0]]]
-    df[df.columns[0]] =  df[df.columns[0]].str.replace('NCAA', '').str.strip()
+    df[df.columns[0]] = df[df.columns[0]].str.replace('NCAA', '').str.strip()
 
     return df

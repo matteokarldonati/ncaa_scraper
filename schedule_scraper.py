@@ -9,11 +9,11 @@ from utils import parse_table, get_table_header
 def get_team_schedule(team, year):
     """
     :param team: string
-    :param year: string
+    :param year: string or int
     :return: pandas.DataFrame containing the schedule of the team for the given year
     """
     base_url = "https://www.sports-reference.com/cbb/schools/"
-    url = base_url + team + '/' + year + '-schedule.html'
+    url = base_url + team + '/' + str(year) + '-schedule.html'
 
     r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
 

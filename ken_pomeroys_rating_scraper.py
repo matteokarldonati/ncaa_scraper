@@ -32,5 +32,6 @@ def get_ken_pomeroys_rating(year):
         cleaned_data.append(i[mask])
 
     df = pd.DataFrame(cleaned_data, index=np.arange(1, len(data) + 1), columns=columns)
+    df[df.columns[0]] = df[df.columns[0]].str.strip('0123456789 ')
 
     return df

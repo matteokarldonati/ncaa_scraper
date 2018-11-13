@@ -9,7 +9,7 @@ from utils import parse_table, get_table_header
 def get_schools_stats(year):
     """
     :param year: string or int
-    :return: pandas.DataFrame containing the schedule of the team for the given year
+    :return: pandas.DataFrame containing statistics for each team for a given year
     """
     base_url = "https://www.sports-reference.com/cbb/seasons/"
     url = base_url + str(year) + '-school-stats.html'

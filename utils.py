@@ -1,3 +1,21 @@
+import requests
+from requests.exceptions import RequestException
+
+
+def get_request(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"}):
+    try:
+        r = requests.get(url, timeout=timeout, headers=headers)
+        if r.status_code == 200:
+            return r
+        else:
+            print(r.status_code)  # add logging
+            return None
+
+    except RequestException as e:
+        print(f'Error during requests to {url} : {str(e)}')  # add logging
+        return None
+
+
 def parse_table(table):
     """
     :param table: html table

@@ -113,3 +113,4 @@ dmypy.json
 # other
 .DS_Store
 .idea/
+scraper.py

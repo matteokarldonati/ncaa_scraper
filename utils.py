@@ -1,14 +1,15 @@
-import requests
 import logging
+
+import requests
 from requests.exceptions import RequestException
 
 logging.basicConfig(filename='logging.log', level=logging.INFO)
+
 
 def get_request(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"}):
     try:
         r = requests.get(url, timeout=timeout, headers=headers)
         if r.status_code == 200:
-            logging.info('Connected')
             return r
         else:
             logging.error('STATUS CODE ' + str(r.status_code))

@@ -2,7 +2,7 @@ import requests
 import logging
 from requests.exceptions import RequestException
 
-logging.basicConfig(filename='logging.log', level=logging.DEBUG)
+logging.basicConfig(filename='logging.log', level=logging.INFO)
 
 def get_request(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"}):
     try:
@@ -11,11 +11,11 @@ def get_request(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"}):
             logging.info('Connected')
             return r
         else:
-            logging.debug('STATUS CODE ' + str(r.status_code))
+            logging.error('STATUS CODE ' + str(r.status_code))
             return None
 
     except RequestException as e:
-        logging.debug(f'Error during requests to {url} : {str(e)}')
+        logging.error(f'Error during requests to {url} : {str(e)}')
         return None
 
 

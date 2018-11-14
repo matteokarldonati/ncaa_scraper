@@ -10,15 +10,16 @@ def get_sonny_moore_rating(year):
     :param year: string or int
     :return: pandas.DataFrame containing Sonny Moore’s ratings for a given year
     """
-
     # only the last two digits of the year are used in the url
     if len(str(year)) > 2:
         year = str(year)[-2:]
 
     url = 'http://sonnymoorepowerratings.com/cb' + str(year) + '.htm'
 
-    r = get_request(url, headers={
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A"})
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A"}
+
+    r = get_request(url, headers=headers)
 
     soup = BeautifulSoup(r.text, 'lxml')
 

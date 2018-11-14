@@ -1,9 +1,8 @@
 import numpy as np
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
 
-from utils import parse_table, get_table_header
+from utils import get_request, parse_table, get_table_header
 
 
 def get_schools_stats(year):
@@ -14,7 +13,7 @@ def get_schools_stats(year):
     base_url = "https://www.sports-reference.com/cbb/seasons/"
     url = base_url + str(year) + '-school-stats.html'
 
-    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
+    r = get_request(url, headers={"User-Agent": "Mozilla/5.0"})
 
     soup = BeautifulSoup(r.text, 'lxml')
 

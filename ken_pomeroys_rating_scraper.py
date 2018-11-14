@@ -16,6 +16,9 @@ def get_ken_pomeroys_rating(year):
     r = get_request(url, headers={
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A"})
 
+    if r is None:
+        return None
+
     soup = BeautifulSoup(r.text, 'lxml')
 
     table = soup.find_all('table')[0]

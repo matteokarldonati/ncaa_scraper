@@ -15,6 +15,9 @@ def get_schools_stats(year):
 
     r = get_request(url, headers={"User-Agent": "Mozilla/5.0"})
 
+    if r is None:
+        return None
+
     soup = BeautifulSoup(r.text, 'lxml')
 
     table = soup.find_all('table')[0]

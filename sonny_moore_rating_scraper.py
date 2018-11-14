@@ -21,6 +21,9 @@ def get_sonny_moore_rating(year):
 
     r = get_request(url, headers=headers)
 
+    if r is None:
+        return None
+
     soup = BeautifulSoup(r.text, 'lxml')
 
     header = soup.find_all('font')[1].text.split('\n')[1]

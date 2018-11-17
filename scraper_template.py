@@ -11,7 +11,7 @@ def scraper(f, params, wait_range=(1, 10)):
     General template for scraping
 
     :param f: scraping function
-    :param params: list of list containing the parameters to be passed to the function
+    :param params: list of list containing the parameters to be passed to the scraping function
     :param wait_range: tuple
     :return: None
     """

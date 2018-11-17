@@ -3,10 +3,10 @@ import time
 
 import numpy as np
 
-logging.basicConfig(filename='logging.log', level=logging.INFO)
+logging.basicConfig(filename='logging.log', level=logging.INFO, filemode="w")
 
 
-def scraper(f, folder, **kwargs):
+def scraper(f, **kwargs):
     """
     General template for scraping
 
@@ -24,7 +24,7 @@ def scraper(f, folder, **kwargs):
                 if df is None:
                     logging.critical(str(param_1) + '_' + str(param_2))
 
-                df.to_csv(folder + str(param_1) + '_' + str(param_2))
+                df.to_csv(str(param_1) + '_' + str(param_2) + '.csv')
 
                 logging.info(str(param_1) + '_' + str(param_2) + ' CREATED')
 
@@ -36,9 +36,11 @@ def scraper(f, folder, **kwargs):
         for param in kwargs[list(kwargs.keys())[0]]:
             df = f(param)
 
-            df.to_csv("/data/" + folder + "/" + str(param))
+            df.to_csv(str(param) + '.csv')
 
             logging.info(str(param) + ' CREATED')
 
             wait = np.random.randint(10)
             time.sleep(wait)
+
+    logging.info('DONE')

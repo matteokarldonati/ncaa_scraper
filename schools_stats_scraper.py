@@ -21,7 +21,7 @@ def get_schools_stats(year):
     soup = BeautifulSoup(r.text, 'lxml')
 
     table = soup.find_all('table')[0]
-    hrefs = table.find_all('a', href = True)
+    hrefs = table.find_all('a', href=True)
 
     link_names = []
     for href in hrefs:
@@ -37,6 +37,3 @@ def get_schools_stats(year):
     df['Link names'] = link_names
 
     return df
-
-
-d = get_schools_stats(2018)

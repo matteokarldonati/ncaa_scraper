@@ -19,6 +19,10 @@ def scraper(f, params, wait_range=(1, 10)):
         for param in params[0]:
             df = f(param)
 
+            if df is None:
+                logging.critical(str(param))
+                continue
+
             df.to_csv(str(param) + '.csv')
 
             logging.info(str(param) + ' CREATED')
@@ -33,6 +37,7 @@ def scraper(f, params, wait_range=(1, 10)):
 
                 if df is None:
                     logging.critical(str(param_1) + '_' + str(param_2))
+                    continue
 
                 df.to_csv(str(param_1) + '_' + str(param_2) + '.csv')
 

@@ -21,6 +21,11 @@ def get_schools_stats(year):
     soup = BeautifulSoup(r.text, 'lxml')
 
     table = soup.find_all('table')[0]
+    hrefs = table.find_all('a', href = True)
+
+    link_names = []
+    for href in hrefs:
+        link_names.append(href['href'].split('/')[3])
 
     data = parse_table(table)
     columns = get_table_header(table, index=1)
@@ -29,5 +34,9 @@ def get_schools_stats(year):
 
     df['NCAA'] = [el.endswith('NCAA') for el in df[df.columns[0]]]
     df[df.columns[0]] = df[df.columns[0]].str.replace('NCAA', '').str.strip()
+    df['Link names'] = link_names
 
     return df
+
+
+d = get_schools_stats(2018)

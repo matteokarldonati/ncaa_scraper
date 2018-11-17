@@ -33,7 +33,7 @@ def scraper(f, params, wait_range=(1, 10)):
     elif len(params) == 2:
         for param_1 in params[0]:
             for param_2 in params[1]:
-                df = f(param_1, param_2)
+                df = f(param_2, param_1)
 
                 if df is None:
                     logging.critical(str(param_1) + '_' + str(param_2))

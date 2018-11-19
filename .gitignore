@@ -114,4 +114,5 @@ dmypy.json
 .DS_Store
 .idea/
 scraper.py
+database_populator.py
 *.csv

@@ -1,5 +1,7 @@
 import pandas as pd
+import os
 
+os.chdir('C:\\Users\\rdangelo\\Desktop\\ncaa_scraper\\data\\schedule')
 
 def matches_populator(file_name):
     """
@@ -28,6 +30,8 @@ def matches_populator(file_name):
     for row in range(table.shape[0]):
         symbol = df[df.columns[3]].iloc[row]
         team_2 = df['Opponent'].iloc[row]  # da pulire e sostituire
+        if team_2.endswith(')') and any(i.isdigit() for i in team_2.split('(')[-1]):
+            team_2 = ''.join(team_2.split('(')[:-1]).strip()
         if symbol == '@':
             table['Team_1'].iloc[row] = team_2
             table['Team_2'].iloc[row] = team_1
@@ -57,3 +61,8 @@ def matches_populator(file_name):
             table['Winner'].iloc[row] = 1 if df[df.columns[6]].iloc[row] == 'W' else 0
 
     return table
+
+
+d= matches_populator('2006_akron.csv')
+
+print(d)
